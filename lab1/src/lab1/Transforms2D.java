@@ -12,53 +12,66 @@ public class Transforms2D extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-
 	private class Display extends JPanel {
 		private static final long serialVersionUID = 1L;
 
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			Graphics2D g2 = (Graphics2D)g;
-			g2.translate(300,300);  // Moves (0,0) to the center of the display.
+			Graphics2D g2 = (Graphics2D) g;
+			g2.translate(300, 300); // Moves (0,0) to the center of the display.
 			int whichTransform = transformSelect.getSelectedIndex();
 
-			// TODO Apply transforms here, depending on the value of whichTransform!
+			poly = new Polygon();
 
-			g2.drawImage(pic, -200, -150, null); // Draw image with center at (0,0).
+			int anglesCount = 22;
+			for (int i = 0; i < anglesCount; i++) {
+				double posX = (200 * Math.cos(i * 2 * Math.PI / anglesCount));
+				double posY = (200 * Math.sin(i * 2 * Math.PI / anglesCount));
+				poly.addPoint((int) posX, (int) posY);
+			}
+
+			g2.setColor(Color.BLACK);
+			g2.setStroke(new BasicStroke(10));
+			g2.draw(poly);
+			g2.setColor(Color.RED);
+			g2.fillPolygon(poly);
+			// TODO Apply transforms here, depending on the value of whichTransform!
+			switch (whichTransform) {
+			default:
+				return;
+			}
 		}
 	}
 
 	private Display display;
-	private BufferedImage pic;
+	private Polygon poly;
 	private JComboBox<String> transformSelect;
 
 	public Transforms2D() throws IOException {
-		pic = ImageIO.read(new FileInputStream("F:\\eclipse-workspace\\lab1\\bin\\lab1\\shuttle.jpg"));
 		display = new Display();
 		display.setBackground(Color.YELLOW);
-		display.setPreferredSize(new Dimension(600,600));
+		display.setPreferredSize(new Dimension(600, 600));
 		transformSelect = new JComboBox<String>();
 		transformSelect.addItem("None");
 		for (int i = 1; i < 10; i++) {
 			transformSelect.addItem("No. " + i);
 		}
-		transformSelect.addActionListener( new ActionListener() {
+		transformSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				display.repaint();
 			}
 		});
-		setLayout(new BorderLayout(3,3));
+		setLayout(new BorderLayout(3, 3));
 		setBackground(Color.GRAY);
-		setBorder(BorderFactory.createLineBorder(Color.GRAY,10));
+		setBorder(BorderFactory.createLineBorder(Color.GRAY, 10));
 		JPanel top = new JPanel();
 		top.setLayout(new FlowLayout(FlowLayout.CENTER));
 		top.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 		top.add(new JLabel("Transform: "));
 		top.add(transformSelect);
-		add(display,BorderLayout.CENTER);
-		add(top,BorderLayout.NORTH);
+		add(display, BorderLayout.CENTER);
+		add(top, BorderLayout.NORTH);
 	}
-
 
 	public static void main(String[] args) throws IOException {
 		JFrame window = new JFrame("2D Transforms");
@@ -67,7 +80,7 @@ public class Transforms2D extends JPanel {
 		window.setResizable(false);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		window.setLocation( (screen.width - window.getWidth())/2, (screen.height - window.getHeight())/2 );
+		window.setLocation((screen.width - window.getWidth()) / 2, (screen.height - window.getHeight()) / 2);
 		window.setVisible(true);
 	}
 

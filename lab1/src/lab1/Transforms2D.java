@@ -21,30 +21,65 @@ public class Transforms2D extends JPanel {
 			g2.translate(300, 300); // Moves (0,0) to the center of the display.
 			int whichTransform = transformSelect.getSelectedIndex();
 
-			poly = new Polygon();
+			// transform g2
+			switch (whichTransform) {
+			case 1:
+				g2.scale(0.4, 0.4);
+				break;
+			case 2:
+				g2.rotate(Math.toRadians(45));
+				break;
+			case 3:
+				g2.scale(0.55, -0.75);
+				break;
+			case 4:
+				g2.shear(0.25, 0);
+				break;
+			case 5:
+				g2.scale(1, 0.45);
+				g2.translate(0, -513);
+				break;
+			case 6:
+				g2.shear(0, -0.55);
+				g2.rotate(1.7);
+				break;
+			case 7:
+				g2.scale(0.5, 1);
+				g2.rotate(Math.toRadians(180));
+				break;
+			case 8:
+				g2.translate(0, 200);
+				g2.scale(1, 0.4);
+				g2.rotate(Math.toRadians(45));
+				break;
+			case 9:
+				g2.rotate(Math.PI);
+				g2.shear(0, 0.275);
+				g2.translate(-147, 0);
+				break;
+			}
 
-			int anglesCount = 22;
+			// generate Polygon
+
+			Polygon polygon = new Polygon();
+
+			final int anglesCount = 22;
+			// create regular polygon
 			for (int i = 0; i < anglesCount; i++) {
-				double posX = (200 * Math.cos(i * 2 * Math.PI / anglesCount));
-				double posY = (200 * Math.sin(i * 2 * Math.PI / anglesCount));
-				poly.addPoint((int) posX, (int) posY);
+				int posX = (int) (150 * Math.cos(i * Math.PI * 2 / anglesCount));
+				int posY = (int) (150 * Math.sin(i * Math.PI * 2 / anglesCount));
+				polygon.addPoint(posX, posY);
 			}
 
 			g2.setColor(Color.BLACK);
 			g2.setStroke(new BasicStroke(10));
-			g2.draw(poly);
-			g2.setColor(Color.RED);
-			g2.fillPolygon(poly);
-			// TODO Apply transforms here, depending on the value of whichTransform!
-			switch (whichTransform) {
-			default:
-				return;
-			}
+			g2.draw(polygon);
+			g2.setColor(Color.CYAN);
+			g2.fillPolygon(polygon);
 		}
 	}
 
 	private Display display;
-	private Polygon poly;
 	private JComboBox<String> transformSelect;
 
 	public Transforms2D() throws IOException {

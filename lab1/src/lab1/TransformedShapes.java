@@ -27,6 +27,19 @@ public class TransformedShapes extends JPanel {
 		g2 = (Graphics2D) g.create();
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+		g2.translate(300, 300); // translate to the center of screen
+		g2.scale(2, 2); // make it 200% bigger
+		g2.setColor(Color.GREEN);
+		square();
+
+		resetTransform();
+
+		g2.translate(300, 300); // translate to the center of screen
+		g2.scale(2, 1); // 2x wider
+		g2.translate(0, 50); // translate 50px to bottom (which is 100% of total height of triangle - because
+								// of g2.scale(2, 1);)
+		g2.setColor(Color.WHITE);
+		triangle();
 
 	}
 

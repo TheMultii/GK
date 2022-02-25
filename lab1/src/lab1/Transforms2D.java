@@ -66,15 +66,15 @@ public class Transforms2D extends JPanel {
 			final int anglesCount = 22;
 			// create regular polygon
 			for (int i = 0; i < anglesCount; i++) {
-				int posX = (int) (150 * Math.cos(i * Math.PI * 2 / anglesCount));
-				int posY = (int) (150 * Math.sin(i * Math.PI * 2 / anglesCount));
+				int posX = (int) (150 * Math.cos(i * (Math.PI * 2 / anglesCount)));
+				int posY = (int) (150 * Math.sin(i * (Math.PI * 2 / anglesCount)));
 				polygon.addPoint(posX, posY);
 			}
 
 			g2.setColor(Color.BLACK);
 			g2.setStroke(new BasicStroke(10));
 			g2.draw(polygon);
-			g2.setColor(Color.CYAN);
+			g2.setColor(new Color(216, 191, 216));
 			g2.fillPolygon(polygon);
 		}
 	}

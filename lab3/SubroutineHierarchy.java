@@ -34,18 +34,18 @@ public class SubroutineHierarchy extends JPanel {
 	private int frameNumber = 0;
 
 	private void drawWorld(Graphics2D g2) {
-		rotatingPolygon(g2, 100, -1.02, -0.05); //Graphics2D, promieñ, translate_x, translate_y
-		rotatingPolygon(g2, 100, 1.04, -0.98);
-		rotatingPolygon(g2, 80, -1.379, 1.4);
-		rotatingPolygon(g2, 80, -3.13, 2.23);
-		rotatingPolygon(g2, 60, 0.9, 2.05);
-		rotatingPolygon(g2, 60, 2.12, 1.45);
+		rotatingPolygon(g2, 100, -1.02, -0.05); // Graphics2D, promieñ, translate_x, translate_y
+		rotatingPolygon(g2, 100, 1.04, -0.9);
+		rotatingPolygon(g2, 80, -1.3, 1.41);
+		rotatingPolygon(g2, 80, -3.12, 2.22);
+		rotatingPolygon(g2, 60, 0.85, 2.04);
+		rotatingPolygon(g2, 60, 2.12, 1.44);
 
-		R_Line(g2, 1, 1.05, 0, -0.5, Color.RED); //Graphics2D, skala_x, skala_y, translate_x, translate_y, color
-		R_Line(g2, 0.85, 0.95, -2.65, 1.9, Color.RED);
-		R_Line(g2, 0.6, 0.7, 2.5, 2.5, Color.RED);
+		R_Line(g2, 1, 1.05, 0, -0.46, Color.RED); // Graphics2D, skala_x, skala_y, translate_x, translate_y, color
+		R_Line(g2, 0.85, 0.95, -2.6, 1.87, Color.RED);
+		R_Line(g2, 0.6, 0.7, 2.47, 2.47, Color.RED);
 
-		Triangle(g2, 0.4, 0.5, 0, -2, Color.BLUE); //Graphics2D, skala_x, skala_y, translate_x, translate_y, color
+		Triangle(g2, 0.4, 0.5, 0, -2, Color.BLUE); // Graphics2D, skala_x, skala_y, translate_x, translate_y, color
 		Triangle(g2, 0.25, 0.35, -2.25, 0.75, new Color(200, 21, 132));
 		Triangle(g2, 0.15, 0.25, 1.5, 1, new Color(0, 128, 0));
 	}
@@ -58,7 +58,7 @@ public class SubroutineHierarchy extends JPanel {
 		g2.setColor(Color.RED);
 		g2.translate(translate_x, translate_y);
 		g2.rotate(-Math.PI / 8);
-		g2.scale(2.3, 0.15);
+		g2.scale(2.29, 0.14);
 		filledRect(g2);
 	}
 
@@ -88,7 +88,7 @@ public class SubroutineHierarchy extends JPanel {
 		g2.setStroke(new BasicStroke(2));
 
 		int n = 22;
-		double t = 0, k = (Math.PI * 2) / n;
+		double t = 0, ang = (Math.PI * 2) / n;
 
 		int[] x1 = new int[n];
 		int[] y1 = new int[n];
@@ -96,14 +96,14 @@ public class SubroutineHierarchy extends JPanel {
 		for (int i = 0; i < n; i++) {
 			x1[i] = (int) (r * Math.sin(t));
 			y1[i] = (int) (r * Math.cos(t));
-			t += k;
+			t += ang;
 		}
 
 		Polygon polygon = new Polygon(x1, y1, n);
 		g2.translate(translate_x, translate_y);
 		g2.setColor(Color.black);
 		g2.rotate(-Math.toRadians(frameNumber * 2));
-		g2.scale(0.005, 0.005);
+		g2.scale(0.00475, 0.00475);
 
 		for (int i = 0; i < n; i++) {
 			g2.drawLine(x1[i], y1[i], 0, 0);
